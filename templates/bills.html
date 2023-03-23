@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+    
+    <div class="container">
+        <h3>Grupės sąskaitos:</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Sąskaitos suma</th>
+                    <th>Komentaras</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if bills %}
+                    {% for bill in bills %}
+                        <tr>
+                            <td>{{ bill.id }}</td>
+                            <td>{{ bill.sum }}</td>
+                            <td>{{ bill.description }}</td>
+                        </tr>
+                    </tbody>
+                {% endfor %}
+            {% endif %}
+        </table>
+    </div>
+    <hr>
+    <p>
+        <a href="{{ url_for('add_bill', group_id=group.id)}}">+ Pridėti sąskaitą</a>
+    </p>
+{% endblock %}

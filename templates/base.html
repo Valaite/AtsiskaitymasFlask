@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Sąskaitos</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Pagrindinis</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <a href="/add_group">Sukurti grupę</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {% if current_user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="/groups">Mano grupės</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Atsijungti</a>
+            </li>
+          {% else %}
+            <li>
+              <a href="/login"><span class="glyphicon glyphicon-user"></span> Prisijungti</a>
+            </li>
+            <li>
+              <a href="/registration"><span class="glyphicon glyphicon-user"></span> Registruotis</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}<div class="alert alert-{{ category }}">{{ message }}</div>{% endfor %}
+        {% endif %}
+      {% endwith %}
+      <div class="text-center">
+        <img src="https://cdn.dribbble.com/users/623359/screenshots/13230768/media/a65ebdd638bc846d4a9a10a4413b3690.png?compress=1&resize=400x300&vertical=top"
+             class="rounded mx-auto d-block"
+             alt="logo"
+             style="width:10%">
+        <h3 >Split Bill</h3>
+        <p class="fw-light">BEST IN MARKET</p>
+      </div>
+      {% block content %}{% endblock %}
+    </div>
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+  </body>
+</html>

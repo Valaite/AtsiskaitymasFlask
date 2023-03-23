@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if form %}
+        <form method="post" action="{{ url_for('join_group') }}">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.groups.label(class="form-control-label") }}
+                {{ form.groups(class="form-control") }}
+            </div>
+            <br>
+            {{ form.submit }}
+        </form>
+        {% else %}
+        <h3>Grupė pridėta!</h3>
+    {% endif %}
+    <br>
+    <p>
+        <a href="{{ url_for('join_group')}}">+ Prisijungti prie kitos grupės</a>
+    </p>
+{% endblock %}
